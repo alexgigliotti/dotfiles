@@ -1,2 +1,2 @@
 # dotfiles
-Here are my vim and tmux configurations
+Here are my bash, tmux, and vim configurations

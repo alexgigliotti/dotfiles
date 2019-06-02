@@ -30,9 +30,16 @@ Plugin 'VundleVim/Vundle.vim'
 " ---- YouCompleteMe ---- "
 " ----------------------- "
 Plugin 'Valloric/YouCompleteMe' " Autocomplete
+" Compiling YCM with conda environment seems to reference for completion after
+" Add .ycm_extra_conf.py to python project dir to link to conda python
 let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ] " press enter to select completion
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+
+" Trigger full autocomplete after typing 2 letters
+let g:ycm_semantic_triggers = {
+	\   'python': [ 're!\w{2}' ]
+	\ }
 
 " ------------------- "
 " ---- Syntastic ---- "
@@ -60,6 +67,23 @@ filetype plugin indent on    " required
 
 
 " ------------------------------------------------------------------ "
+" ------------------------- Other Settings ------------------------- "
+" ------------------------------------------------------------------ "
+
+" Syntax highlighting
+syntax on
+colorscheme blackboard
+" YCM pop-up colors
+highlight Pmenu ctermfg=15 ctermbg=202 guifg=#ffffff guibg=#000087
+
+" Align indents
+filetype indent plugin on
+
+" Display line numbers
+set number
+
+
+" ------------------------------------------------------------------ "
 " ------------------------ Python Settings  ------------------------ "
 " ------------------------------------------------------------------ "
 augroup python_files
@@ -76,21 +100,3 @@ augroup python_files
     highlight Function guifg=#990000 gui=bold ctermfg=202
 
 augroup END
-
-
-" ------------------------------------------------------------------ "
-" ------------------------- Other Settings ------------------------- "
-" ------------------------------------------------------------------ "
-
-" Syntax highlighting
-syntax on
-colorscheme blackboard
-" YCM pop-up colors
-highlight Pmenu ctermfg=15 ctermbg=202 guifg=#ffffff guibg=#000087
-
-" Align indents
-filetype indent plugin on
-
-" Display line numbers
-set number
-
